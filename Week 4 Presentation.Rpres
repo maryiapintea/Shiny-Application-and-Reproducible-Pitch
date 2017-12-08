@@ -1,0 +1,43 @@
+Week 4 Presentation
+========================================================
+author: Maria Pintea
+date: 12/8/2017
+autosize: true
+
+Application Presentation
+========================================================
+
+This application is building an environment for a data collection on failure analysis of Franchises. 
+
+- Failure
+- Disbursement
+- Disbursement on 1000$
+- Chgoff
+
+Plot Presentation
+========================================================
+
+```{r, echo=FALSE}
+
+Dat<-read.csv("A:\\home\\Documents\\Franchise_Failureby_Brand2011.csv", sep=';')
+names(Dat)[1]<-paste("Brand")
+names(Dat)[2]<-paste("Failure")
+names(Dat)[3]<-paste("Disbursement")
+names(Dat)[4]<-paste("Disb$X$1000")
+names(Dat)[5]<-paste("Chgoff")
+Dat1<-Dat[is.na(Dat)==FALSE,]
+df<-sapply(Dat1, gsub, pattern='%', replacement='')
+Dat<-as.data.frame(df)
+Dat<-Dat[1:578,]
+
+Dat$Failure<-as.numeric(Dat$Failure)
+Dat$Disbursement<-as.numeric(Dat$Disbursement)
+Dat$Chgoff<-as.numeric(Dat$Chgoff)
+Dat$`Disb$X$1000`<-as.numeric(Dat$`Disb$X$1000`)
+
+plot(Dat$Failure, Dat$Brand, col="red",
+         main=paste('Histogram of Franchise Failure'))
+```
+In case you can not see the plot you can find it on:
+
+http://rpubs.com/maryiapintea123/339168
